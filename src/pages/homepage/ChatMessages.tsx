@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import LoadingMessage from "../../components/LoadingMessage";
+import Message from "../../components/Message";
 import OptionsText from "../../components/OptionsText";
 import { RootState } from "../../redux/store";
 import * as SC from "./styles";
@@ -29,7 +30,7 @@ const ChatMessages = () => {
           <SC.ContentMessage
             justifyContent={chat.isSended ? "flex-end" : "flex-start"}
           >
-            {chat.message}
+            <Message message={chat.message} />
           </SC.ContentMessage>
         </SC.Message>
       ))}

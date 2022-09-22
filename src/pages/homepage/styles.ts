@@ -20,6 +20,7 @@ export const ChatContainer = styled.div`
   align-items: center;
   box-shadow: 0 2px 15px 3px #00000038;
   border-radius: 15px;
+  background-color: #ffffff;
 `;
 
 export const ChatBar = styled.div`

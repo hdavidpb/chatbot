@@ -29,13 +29,20 @@ const chatSlice = createSlice({
     });
     addCase(sendMessageToBot.fulfilled, (state, { payload }) => {
       state.isSendingMessage = false;
-      const newMessage: IChat = {
-        id: generateRandomNumber({ max: 70000, min: 1 }),
-        isSended: false,
-        message: payload!,
-      };
+      if (payload!.payload.textos.length !== 0) {
+        payload!.payload.textos.forEach((texto) => {
+          const newMessage: IChat = {
+            id: generateRandomNumber({ max: 70000, min: 1 }),
+            isSended: false,
+            message: texto,
+          };
+          state.chats = [...state.chats, newMessage];
+        });
+      }
 
-      state.chats = [...state.chats, newMessage];
+      if (payload!.payload.botones) {
+        state.buttonOptions = [...payload!.payload.botones];
+      }
     });
     addCase(generateRandomId.pending, (state) => {
       state.isGettingId = true;

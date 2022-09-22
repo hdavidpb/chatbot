@@ -11,3 +11,18 @@ export interface IChat {
   isSended: boolean;
   message: string;
 }
+
+export interface IChatResponse {
+  respuesta: Respuesta;
+}
+
+export interface Respuesta {
+  error: boolean;
+  payload: Payload;
+}
+
+export interface Payload {
+  botones: string[];
+  textos: string[];
+  enlace: string;
+}

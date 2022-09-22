@@ -1,5 +1,6 @@
 import Axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { IChatResponse } from "./interfaces";
 
 const URL = "http://18.220.255.146:9000";
 
@@ -21,10 +22,7 @@ export const sendMessageToBot = createAsyncThunk(
   async (messageData: { id: string; lee: string }) => {
     console.log("SENDING TO BOT");
     try {
-      const res = await Axios.post<{ respuesta: string }>(
-        `${URL}/chat`,
-        messageData
-      );
+      const res = await Axios.post<IChatResponse>(`${URL}/chat`, messageData);
 
       return res.data.respuesta;
     } catch (error) {

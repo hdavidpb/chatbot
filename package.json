@@ -10,16 +10,21 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",
+    "@speechly/speech-recognition-polyfill": "^1.2.0",
     "axios": "^0.27.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
     "react-redux": "^8.0.2",
+    "react-speech-recognition": "^3.9.1",
+    "react-tooltip": "^4.2.21",
+    "regenerator-runtime": "^0.13.9",
     "styled-components": "^5.3.5"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
+    "@types/react-speech-recognition": "^3.9.0",
     "@types/styled-components": "^5.1.26",
     "@vitejs/plugin-react": "^2.0.1",
     "typescript": "^4.6.4",
