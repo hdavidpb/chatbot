@@ -74,7 +74,7 @@ const FormMessage = () => {
             </SC.IconContainer>
           ) : (
             <SC.IconContainer
-              data-tip="Reconocimiento de voz"
+              data-tip="Enviar por voz"
               style={{ opacity: buttonOptions.length !== 0 ? 0.4 : 1 }}
               disabled={buttonOptions.length !== 0}
               onClick={startListening}
