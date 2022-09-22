@@ -27,7 +27,9 @@ const FormMessage = () => {
 
   const handleSendMessage = (e: React.FormEvent) => {
     e.preventDefault();
-
+    if (!message.trim() || listening) {
+      return;
+    }
     const messageChat: IChat = {
       id: generateRandomNumber({ max: 80000, min: 1 }),
       isSended: true,
@@ -36,6 +38,7 @@ const FormMessage = () => {
 
     dispatch(sendMessage(messageChat));
     dispatch(sendMessageToBot({ id: roomId!, lee: message }));
+
     handleChangeMessage("");
     resetTranscript();
   };
@@ -49,26 +52,37 @@ const FormMessage = () => {
         onChange={(e) => handleChangeMessage(e.target.value)}
         disabled={buttonOptions.length !== 0}
       />
-      <SC.IconContainer
-        data-tip="Enviar mensaje"
-        type="submit"
-        disabled={!message.trim() || isSendingMessage || !roomId}
-      >
-        <AiOutlineSend size={20} />
-        <ReactTooltip />
-      </SC.IconContainer>
-      {browserSupportsSpeechRecognition && (
+      {!listening && (
         <SC.IconContainer
-          data-tip="Reconocimiento de voz"
-          style={{ opacity: buttonOptions.length !== 0 ? 0.4 : 1 }}
-          disabled={buttonOptions.length !== 0}
-          onClick={startListening}
-          // onMouseUp={SpeechRecognition.abortListening}
-          type="button"
-          // disabled={!message.trim() || isSendingMessage || !roomId}
+          data-tip="Enviar mensaje"
+          type="submit"
+          disabled={!message.trim() || isSendingMessage || !roomId}
         >
-          <FaMicrophone size={20} color={listening ? "red" : "grey"} />
+          <AiOutlineSend size={20} />
         </SC.IconContainer>
+      )}
+
+      {browserSupportsSpeechRecognition && (
+        <>
+          {listening ? (
+            <SC.IconContainer
+              data-tip="Enviar"
+              disabled={buttonOptions.length !== 0}
+              onClick={SpeechRecognition.abortListening}
+            >
+              <FaMicrophone size={20} color={"red"} />
+            </SC.IconContainer>
+          ) : (
+            <SC.IconContainer
+              data-tip="Reconocimiento de voz"
+              style={{ opacity: buttonOptions.length !== 0 ? 0.4 : 1 }}
+              disabled={buttonOptions.length !== 0}
+              onClick={startListening}
+            >
+              <FaMicrophone size={20} color={"grey"} />
+            </SC.IconContainer>
+          )}
+        </>
       )}
 
       <ReactTooltip />
