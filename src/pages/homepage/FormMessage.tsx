@@ -62,8 +62,8 @@ const FormMessage = () => {
           data-tip="Reconocimiento de voz"
           style={{ opacity: buttonOptions.length !== 0 ? 0.4 : 1 }}
           disabled={buttonOptions.length !== 0}
-          onMouseDown={startListening}
-          onMouseUp={SpeechRecognition.abortListening}
+          onClick={startListening}
+          // onMouseUp={SpeechRecognition.abortListening}
           type="button"
           // disabled={!message.trim() || isSendingMessage || !roomId}
         >
